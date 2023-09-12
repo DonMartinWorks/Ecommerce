@@ -5,6 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\VendorController;
 
+$admin = __('admin');
+$vendor = __('vendor');
+
 /*
 |--------------------------------------------------------------------------
 | Admin
@@ -14,7 +17,7 @@ use App\Http\Controllers\Backend\VendorController;
 |
 */
 
-Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware('auth')->name('admin.dashboard');
+Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth', "role:$admin"])->name('admin.dashboard');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +28,4 @@ Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->middleware
 |
 */
 
-Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->middleware('auth')->name('vendor.dashboard');
+Route::get('vendor/dashboard', [VendorController::class, 'dashboard'])->middleware(['auth', "role:$vendor"])->name('vendor.dashboard');
