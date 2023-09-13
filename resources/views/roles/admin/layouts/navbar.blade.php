@@ -18,16 +18,17 @@
                 <div class="dropdown-list-content dropdown-list-message">
                     <a href="#" class="dropdown-item dropdown-item-unread">
                         <div class="dropdown-item-avatar">
-                            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle">
+                            <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                class="rounded-circle">
                             <div class="is-online"></div>
                         </div>
                         <div class="dropdown-item-desc">
-                            <b>Kusnaedi</b>
-                            <p>Hello, Bro!</p>
-                            <div class="time">10 Hours Ago</div>
+                            <b>Cochino Larry</b>
+                            <p>Wena wachin, soy un mensaje por defecto</p>
+                            <div class="time">5 Minutes Ago</div>
                         </div>
                     </a>
-                    <a href="#" class="dropdown-item dropdown-item-unread">
+                    {{-- <a href="#" class="dropdown-item dropdown-item-unread">
                         <div class="dropdown-item-avatar">
                             <img alt="image" src="assets/img/avatar/avatar-2.png" class="rounded-circle">
                         </div>
@@ -36,8 +37,9 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
                             <div class="time">12 Hours Ago</div>
                         </div>
-                    </a>
-                    <a href="#" class="dropdown-item dropdown-item-unread">
+                    </a> --}}
+
+                    {{-- <a href="#" class="dropdown-item dropdown-item-unread">
                         <div class="dropdown-item-avatar">
                             <img alt="image" src="assets/img/avatar/avatar-3.png" class="rounded-circle">
                             <div class="is-online"></div>
@@ -47,8 +49,9 @@
                             <p>Sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                             <div class="time">12 Hours Ago</div>
                         </div>
-                    </a>
-                    <a href="#" class="dropdown-item">
+                    </a> --}}
+
+                    {{-- <a href="#" class="dropdown-item">
                         <div class="dropdown-item-avatar">
                             <img alt="image" src="assets/img/avatar/avatar-4.png" class="rounded-circle">
                         </div>
@@ -57,8 +60,9 @@
                             <p>Duis aute irure dolor in reprehenderit in voluptate velit ess</p>
                             <div class="time">16 Hours Ago</div>
                         </div>
-                    </a>
-                    <a href="#" class="dropdown-item">
+                    </a> --}}
+
+                    {{-- <a href="#" class="dropdown-item">
                         <div class="dropdown-item-avatar">
                             <img alt="image" src="assets/img/avatar/avatar-5.png" class="rounded-circle">
                         </div>
@@ -67,7 +71,8 @@
                             <p>Exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
                             <div class="time">Yesterday</div>
                         </div>
-                    </a>
+                    </a> --}}
+
                 </div>
                 <div class="dropdown-footer text-center">
                     <a href="#">View All <i class="fas fa-chevron-right"></i></a>
@@ -136,8 +141,9 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                <img alt="image" src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
+                    class="rounded-circle mr-1">
+                <div class="d-sm-none d-lg-inline-block">{{ __('Hi') }}, {{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>
