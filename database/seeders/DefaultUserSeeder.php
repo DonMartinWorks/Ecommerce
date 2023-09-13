@@ -50,13 +50,25 @@ class DefaultUserSeeder extends Seeder
         User::create([
             'name' => 'Usuario Normal',
             'username' => 'Normal',
-            'email' => 'normal@normal.com',
+            'email' => 'user@user.com',
             'email_verified_at' => now(),
             'password' => bcrypt('123456789'),
             'phone' => '456789123456',
             'remember_token' => Str::random(10),
             'role' => $user,
             'status' => $active
+        ]);
+
+        User::create([
+            'name' => 'Usuario Normal Inactivo',
+            'username' => 'NormalInactivo',
+            'email' => 'user2@user2.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt('123456789'),
+            'phone' => '123987456258',
+            'remember_token' => Str::random(10),
+            'role' => $user,
+            'status' => $inactive
         ]);
     }
 }
