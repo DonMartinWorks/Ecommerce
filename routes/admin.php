@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,3 +14,14 @@ use App\Http\Controllers\Backend\AdminController;
 */
 
 Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Admin Profile
+|--------------------------------------------------------------------------
+|
+| Acá van las rutas de los usuarios del perfil.
+|
+*/
+
+Route::get('profile', [ProfileController::class, 'index'])->name('profile');
