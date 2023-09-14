@@ -25,3 +25,4 @@ Route::get('dashboard', [AdminController::class, 'dashboard'])->name('dashboard'
 */
 
 Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('profile/update', [ProfileController::class, 'admin_profile'])->name('profile.update');

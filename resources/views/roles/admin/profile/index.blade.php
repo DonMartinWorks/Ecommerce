@@ -13,7 +13,9 @@
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
+                        <form method="post" class="needs-validation" novalidate=""
+                            action="{{ route('admin.profile.update') }}">
+                            @csrf
                             <div class="card-header">
                                 <h4>{{ __('Update Profile') }}</h4>
                             </div>
@@ -21,11 +23,14 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Name') }}</label>
-                                        <input type="text" class="form-control" placeholder="Jhon Doe" required="">
+                                        <input type="text" name="name" class="form-control"
+                                            value="{{ Auth::user()->name }}" placeholder="Jhon Doe" required="">
                                     </div>
+
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Email') }}</label>
-                                        <input type="text" class="form-control" placeholder="Doe" required="">
+                                        <input type="email" name="email" class="form-control"
+                                            value="{{ Auth::user()->email }}" placeholder="jhon@doe.com" required="">
                                     </div>
                                 </div>
                             </div>
