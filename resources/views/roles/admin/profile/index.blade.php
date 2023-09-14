@@ -14,13 +14,31 @@
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
                         <form method="post" class="needs-validation" novalidate=""
-                            action="{{ route('admin.profile.update') }}">
+                            action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h4>{{ __('Update Profile') }}</h4>
                             </div>
                             <div class="card-body">
                                 <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="mb-3">
+                                            @if (!Auth::user()->image)
+                                                <img width="80px" alt="image"
+                                                    src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                                    class="rounded-circle mr-1">
+                                            @else
+                                                <img width="80px" src="{{ asset(Auth::user()->image) }}"
+                                                class="rounded-circle mr-1"
+                                                    alt="{{ Auth::user()->name }}">
+                                            @endif
+                                        </div>
+
+                                        <label>{{ __('Image Avatar') }}</label>
+                                        <input type="file" name="image" class="form-control"
+                                            value="{{ Auth::user()->name }}" placeholder="Jhon Doe" required="">
+                                    </div>
+
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Name') }}</label>
                                         <input type="text" name="name" class="form-control"
@@ -35,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="card-footer text-right">
-                                <button class="btn btn-primary">Save Changes</button>
+                                <button class="btn btn-primary">{{ __('Save Changes') }}</button>
                             </div>
                         </form>
                     </div>
