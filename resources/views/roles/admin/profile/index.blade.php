@@ -29,8 +29,7 @@
                                                     class="rounded-circle mr-1">
                                             @else
                                                 <img width="80px" src="{{ asset(Auth::user()->image) }}"
-                                                class="rounded-circle mr-1"
-                                                    alt="{{ Auth::user()->name }}">
+                                                    class="rounded-circle mr-1" alt="{{ Auth::user()->name }}">
                                             @endif
                                         </div>
 
@@ -54,6 +53,44 @@
                             </div>
                             <div class="card-footer text-right">
                                 <button class="btn btn-primary">{{ __('Save Changes') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-5">
+                    <div class="card">
+                        <x-temp-errors />
+
+                        <form method="post" class="needs-validation" novalidate=""
+                            action="{{ route('admin.password.update') }}">
+                            @csrf
+                            <div class="card-header">
+                                <h4>{{ __('Update Password') }}</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label>{{ __('Current Password') }}</label>
+                                        <input type="password" name="current_password" class="form-control" value=""
+                                            placeholder="{{ __('Your Password') }}">
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label>{{ __('New Password') }}</label>
+                                        <input type="password" name="password" class="form-control" value=""
+                                            placeholder="{{ __('Your Password') }}">
+                                    </div>
+
+                                    <div class="form-group col-12">
+                                        <label>{{ __('Repeat Password') }}</label>
+                                        <input type="password" name="password_confirmation" class="form-control"
+                                            value="" placeholder="{{ __('Your Password') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary">{{ __('Update Password') }}</button>
                             </div>
                         </form>
                     </div>

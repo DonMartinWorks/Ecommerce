@@ -18,7 +18,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * return admin login
+     * update admin profile
      */
     public function admin_profile(Request $request)
     {
@@ -34,7 +34,7 @@ class ProfileController extends Controller
         // Para agregar una imagen avatar o actualizarla
         if ($request->hasFile('image')) {
             # Eliminacion de la imagen actual para reemplazarla.
-            if(File::exists(public_path($user->image))){
+            if (File::exists(public_path($user->image))) {
                 File::delete(public_path($user->image));
             }
 
@@ -50,6 +50,23 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
+
+        return redirect()->back();
+    }
+
+    /**
+     * update password for user
+     */
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $request->user()->update([
+            'password' => bcrypt($request->password)
+        ]);
 
         return redirect()->back();
     }
