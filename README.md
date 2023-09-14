@@ -1,66 +1,224 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<a name="readme-top"></a>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+# Sobre el Proyecto
+
+_Este proyecto es un ecommerce._
+
+<br />
+<br />
+
+## Creación de archivos necesarios
+
+1. _Crea un archivo llamado <b>.env</b> tomando de ejemplo de archivo <b>.env.example</b> este archivo es necesario para el funcionamiento del proyecto._
+
+<br />
+<br />
+
+## Creación de carpetas necesarias
+
+<b>/uploads/avatars</b>
+
+<br />
+
+1. En la carpeta public crea una carpeta llamada uploads.\_
+
+2. Dentro de uploads crea una carpeta llamada avatars.\_
+
+<br />
+<br />
+
+### Levantar el servidor Local
+
+<p>Levantar estos comandos en 2 consolas <b>CMD</b> al mismo tiempo</p>
+
+1. Levantado de servidor local
+
+    ```
+    php artisan serve
+    ```
+
+2. Servidor de instancias de NPM
+
+    ```
+    npm run dev
+    ```
+
+<br />
+<br />
+
+### Servidores Locales necesarios
+
+<p>Esta aplicación WEB puede tener problemas al buscar la imagen de thumbnail, para solucionar esto cambia `APP_URL` </p>
+
+1. Si usaste el servidor local con artisa serve
+
+    ```
+    APP_URL=http://127.0.0.1:8000
+    ```
+
+2. Con el servidor local de Laragon
+
+    ```
+    APP_URL=http://FilamentBlog.test
+    ```
+
+<br />
+<br />
+
+# Instalación del proyecto
+
+_Para la instalacion de este proyecto Laravel es necesario seguir los siguientes comandos_
+
+1. Instalacion de los paquetes `Composer`.
+
+    ```
+    composer install
+    ```
+
+2. Instalacion de los paquetes `NODE`.
+
+    ```
+    npm install
+    ```
+
+3. Construcción de los paquetes `NODE`.
+
+    ```
+    npm run build
+    ```
+
+4. Generación de una llave de proyecto.
+
+    ```
+    php artisan key:generate
+    ```
+
+5. Construcción de la DB.
+
+    ```
+    php artisan migrate
+    ```
+
+6. Generación de seeds.
+
+    ```
+    php artisan db:seed
+    ```
+
+<br />
+<br />
+
+### Comandos SQL
+
+```
+php artisan migrate:rollback
+```
+
+<p>Regresa a la migracion anterior de la DB</p>
+
+<br />
+
+```
+php artisan migrate:refresh
+```
+
+<p>Limpia la DB</p>
+
+<br />
+
+```
+php artisan migrate:rollback --step=1
+```
+
+<p>Regresa a la migracion anterior de un paso de la DB</p>
+
+<br />
+<br />
+
+### Reinicio de la Base de Datos
+
+```
+php artisan migrate:fresh --seed
+```
+
+<p>Reinicia desde cero la DB y crea los seeders</p>
+
+<br />
+
+```
+php artisan migrate:refresh --seed
+```
+
+<p>Limpia la DB y crea los seeders</p>
+
+<br />
+<br />
+
+## Otros Comandos
+
+_Comandos que podrian ser necesarios_
+
+1. Generación de seeds
+
+    ```
+    php artisan db:seed
+    ```
+
+2. Limpieza de caché (events/views/cache/route/config/compiled)
+
+    ```
+     php artisan optimize:clear
+    ```
+
+3. Creacion de los links de los archivos estaticos
+
+    ```
+    php artisan storage:link
+    ```
+
+4. Creacion de un modelo con controller tipo resource, con migration, factory y seeder para la DB.
+    ```
+    php artisan make:model Model -mcfs --resource
+    ```
+
+<br />
+<br />
+<br />
+<br />
+
+#### Paquetes Utilizados
+
+<p align="left">
+<a href="https://laravel.com/docs/9.x/starter-kits#laravel-breeze">Breeze</a>
+<br />
+<a href="https://publisher.laravel-lang.com/">Laravel Lang Publisher</a>
 </p>
 
-## About Laravel
+<br />
+<br />
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+#### Programas necesarios
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+_Lista de programas utilizados en este proyecto_
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<p align="left">
+<a href="https://nodejs.org/">Node <b>LTS</b></a>
+<br />
+<a href="https://getcomposer.org/download/">Composer</a>
+</p>
 
-## Learning Laravel
+<br />
+<br />
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Contacto
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Mi Cuenta GitHub: [https://github.com/DonMartinWorks](https://github.com/DonMartinWorks)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<br />
 
-## Laravel Sponsors
+Link ReadMe Opción N°2: [https://readme.so/es](https://readme.so/es)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<br />
+<br />
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<a href="#readme-top">Subir a las instrucciones</a>
