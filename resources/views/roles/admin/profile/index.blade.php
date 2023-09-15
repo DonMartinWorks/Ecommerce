@@ -49,6 +49,18 @@
                                         <input type="email" name="email" class="form-control"
                                             value="{{ Auth::user()->email }}" placeholder="jhon@doe.com" required="">
                                     </div>
+
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>{{ __('Username') }}</label>
+                                        <input type="text" name="username" class="form-control"
+                                            value="{{ Auth::user()->username }}" placeholder="Jhon-Doe" required="">
+                                    </div>
+
+                                    <div class="form-group col-md-6 col-12">
+                                        <label>{{ __('Phone') }}</label>
+                                        <input type="text" name="phone" class="form-control"
+                                            value="{{ Auth::user()->phone }}" placeholder="+1 (615) 507-8013" required="">
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
