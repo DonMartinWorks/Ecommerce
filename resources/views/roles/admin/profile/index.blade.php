@@ -35,7 +35,7 @@
 
                                         <label>{{ __('Image Avatar') }}</label>
                                         <input type="file" name="image" class="form-control"
-                                            value="{{ Auth::user()->name }}" placeholder="Jhon Doe" required="">
+                                            value="{{ Auth::user()->name }}" placeholder="Jhon Doe">
                                     </div>
 
                                     <div class="form-group col-md-6 col-12">
@@ -60,8 +60,6 @@
 
                 <div class="col-12 col-md-12 col-lg-5">
                     <div class="card">
-                        <x-temp-errors />
-
                         <form method="post" class="needs-validation" novalidate=""
                             action="{{ route('admin.password.update') }}">
                             @csrf
