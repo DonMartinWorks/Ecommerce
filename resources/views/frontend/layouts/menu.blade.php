@@ -311,8 +311,12 @@
                     </ul>
                     <ul class="wsus__menu_item wsus__menu_item_right">
                         <li><a href="contact.html">contact</a></li>
-                        <li><a href="dsahboard.html">my account</a></li>
-                        <li><a href="login.html">login</a></li>
+
+                        @guest
+                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        @else
+                            <li><a href="dsahboard.html">my account</a></li>
+                        @endguest
                     </ul>
                 </div>
             </div>
