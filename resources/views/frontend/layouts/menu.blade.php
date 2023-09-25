@@ -315,7 +315,7 @@
                         @guest
                             <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         @else
-                            <li><a href="dsahboard.html">my account</a></li>
+                            <li><a href="{{ route('user.dashboard') }}">{{ __('My Account') }}</a></li>
                         @endguest
                     </ul>
                 </div>
