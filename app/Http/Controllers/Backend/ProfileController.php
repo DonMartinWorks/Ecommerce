@@ -25,8 +25,8 @@ class ProfileController extends Controller
         $request->validate([
             'name' => ['required', 'max:100'],
             'email' => ['required', 'email', 'unique:users,email,' . Auth::user()->id],
-            'username' => ['required', 'max:100', 'unique:users,username,' . Auth::user()->id],
-            'phone' => ['required', 'max:18', 'unique:users,phone,' . Auth::user()->id],
+            // 'username' => ['required', 'max:100', 'unique:users,username,' . Auth::user()->id],
+            // 'phone' => ['required', 'max:18', 'unique:users,phone,' . Auth::user()->id],
             'image' => ['image', 'max:1024']
         ]);
 
@@ -51,8 +51,8 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        // $user->phone = $request->phone;
         $user->username = $request->username;
-        $user->phone = $request->phone;
 
         $user->save();
 

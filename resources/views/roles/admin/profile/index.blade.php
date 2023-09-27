@@ -49,7 +49,7 @@
                                         <input type="email" name="email" class="form-control"
                                             value="{{ Auth::user()->email }}" placeholder="jhon@doe.com" required="">
                                     </div>
-
+{{--
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Username') }}</label>
                                         <input type="text" name="username" class="form-control"
@@ -60,7 +60,7 @@
                                         <label>{{ __('Phone') }}</label>
                                         <input type="text" name="phone" class="form-control"
                                             value="{{ Auth::user()->phone }}" placeholder="+1 (615) 507-8013" required="">
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <div class="card-footer text-right">
@@ -83,19 +83,19 @@
                                     <div class="form-group col-12">
                                         <label>{{ __('Current Password') }}</label>
                                         <input type="password" name="current_password" class="form-control" value=""
-                                            placeholder="{{ __('Your Password') }}">
+                                            placeholder="{{ __('Current Password') }}">
                                     </div>
 
                                     <div class="form-group col-12">
                                         <label>{{ __('New Password') }}</label>
                                         <input type="password" name="password" class="form-control" value=""
-                                            placeholder="{{ __('Your Password') }}">
+                                            placeholder="{{ __('New Password') }}">
                                     </div>
 
                                     <div class="form-group col-12">
                                         <label>{{ __('Repeat Password') }}</label>
                                         <input type="password" name="password_confirmation" class="form-control"
-                                            value="" placeholder="{{ __('Your Password') }}">
+                                            value="" placeholder="{{ __('Confirm Password') }}">
                                     </div>
                                 </div>
                             </div>
