@@ -29,6 +29,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => $user, 'as' => '
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/password', [UserProfileController::class, 'password'])->name('profile.update.password');
 });
 
 Route::middleware('auth')->group(function () {
