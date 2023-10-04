@@ -11,7 +11,7 @@
         </div>
         <div class="section-body">
             <div class="row mt-sm-4">
-                <div class="col-12 col-md-12 col-lg-7">
+                <div class="col-12 col-lg-12">
                     <div class="card">
                         <form method="post" class="needs-validation" novalidate=""
                             action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
@@ -49,7 +49,7 @@
                                         <input type="email" name="email" class="form-control"
                                             value="{{ Auth::user()->email }}" placeholder="jhon@doe.com" required="">
                                     </div>
-{{--
+
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Username') }}</label>
                                         <input type="text" name="username" class="form-control"
@@ -59,8 +59,9 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label>{{ __('Phone') }}</label>
                                         <input type="text" name="phone" class="form-control"
-                                            value="{{ Auth::user()->phone }}" placeholder="+1 (615) 507-8013" required="">
-                                    </div> --}}
+                                            value="{{ Auth::user()->phone }}" placeholder="+1 (615) 507-8013"
+                                            required="">
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer text-right">
@@ -70,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-12 col-lg-5">
+                <div class="col-12 col-lg-12">
                     <div class="card">
                         <form method="post" class="needs-validation" novalidate=""
                             action="{{ route('admin.password.update') }}">
