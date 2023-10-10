@@ -29,7 +29,32 @@ class SliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            // 'banner' => ['required', 'image', 'max:2048'],
+            'type' => ['nullable', 'string', 'max:200'],
+            'title' => ['required', 'max:200'],
+            'starting_price' => ['nullable', 'max:200'],
+            'btn_url' => ['nullable', 'url'],
+            'serial' => ['required'],
+            'status' => ['required', 'integer', 'between:0,1'],
+        ]);
+
+        $slider = new Slider();
+
+        $slider->type = $request->type;
+        $slider->title = $request->title;
+        $slider->starting_price = $request->starting_price;
+        $slider->btn_url = $request->btn_url;
+        $slider->serial = $request->serial;
+        $slider->status = $request->status;
+        $slider->type = $request->type;
+
+        $slider->save();
+
+        $msg = __('Silder created successfully!');
+        toastr()->success($msg);
+
+        return redirect()->back();
     }
 
     /**

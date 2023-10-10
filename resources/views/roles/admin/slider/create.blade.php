@@ -16,42 +16,44 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('admin.slider.store') }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group">
                                     <label for="banner">{{ __('Banner') }}</label>
-                                    <input type="file" class="form-control">
+                                    <input type="file" name="banner" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="type">{{ __('Type') }}</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="type" class="form-control" value="{{ old('type') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="title">{{ __('Title') }}</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="title" class="form-control" value="{{ old('title') }}">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="price">{{ __('Starting Price') }}</label>
-                                    <input type="text" class="form-control">
+                                    <label for="starting_price">{{ __('Starting Price') }}</label>
+                                    <input type="text" name="starting_price" class="form-control"
+                                        value="{{ old('starting_price') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="button">{{ __('Button Url') }}</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="btn_url" class="form-control" value="{{ old('btn_url') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="serial">{{ __('Serial') }}</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="serial" class="form-control" value="{{ old('serial') }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="serial">{{ __('State') }}</label>
                                     <select name="status" class="form-control">
-                                        <option value="">{{ __('Active') }}</option>
-                                        <option value="">{{ __('Inactive') }}</option>
+                                        <option value="1">{{ __('Active') }}</option>
+                                        <option value="0">{{ __('Inactive') }}</option>
                                     </select>
                                 </div>
 
