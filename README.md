@@ -24,6 +24,8 @@ _Este proyecto es un ecommerce._
 
 2. Dentro de uploads crea una carpeta llamada avatars.\_
 
+3. Dentro de uploads crea una carpeta llamada banners.\_
+
 <br />
 <br />
 
