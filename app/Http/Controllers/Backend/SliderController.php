@@ -60,7 +60,7 @@ class SliderController extends Controller
 
         $slider->save();
 
-        $msg = __('Silder created successfully!');
+        $msg = __('Slider created successfully!');
         toastr()->success($msg);
 
         return redirect()->back();
@@ -77,17 +77,49 @@ class SliderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Slider $slider)
+    public function edit(string $id)
     {
-        //
+        $slider = Slider::findOrFail($id);
+
+        return view('roles.admin.slider.edit', compact('slider'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Slider $slider)
+    public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'banner' => ['nullable', 'image', 'max:2048'],
+            'type' => ['nullable', 'string', 'max:200'],
+            'title' => ['required', 'max:200'],
+            'starting_price' => ['nullable', 'max:200'],
+            'btn_url' => ['nullable', 'url'],
+            'serial' => ['required'],
+            'status' => ['required', 'integer', 'between:0,1'],
+        ]);
+
+        $slider = Slider::findOrFail($id);
+
+        # Image
+        $imagePath = $this->updateImage($request, 'banner', 'uploads/banners', $slider->banner);
+        $slider->banner = $imagePath;
+
+
+        $slider->type = $request->type;
+        $slider->title = $request->title;
+        $slider->starting_price = $request->starting_price;
+        $slider->btn_url = $request->btn_url;
+        $slider->serial = $request->serial;
+        $slider->status = $request->status;
+        $slider->type = $request->type;
+
+        $slider->save();
+
+        $msg = __('Slider updated successfully!');
+        toastr()->success($msg);
+
+        return redirect()->route('admin.slider.index');
     }
 
     /**
