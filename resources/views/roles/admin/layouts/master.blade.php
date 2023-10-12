@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>General Dashboard &mdash; {{ config('app.name', 'Laravel') }}</title>
 
     <!-- General CSS Files -->
@@ -88,8 +89,10 @@
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
+
     <!-- Toasts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Toasts -->
 
     <!-- Page Specific JS File -->
@@ -105,6 +108,65 @@
                 toastr.error("{{ $error }}")
             @endforeach
         @endif
+    </script>
+
+    <!-- Delete Alert -->
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('body').on('click', '.delete-item', function(event) {
+                event.preventDefault();
+
+                // Para traer la ID del elemento que se va a eliminar
+                let deleteUrl = $(this).attr('href');
+
+                // Alerta
+                Swal.fire({
+                    title: '{{ __('Are you sure?') }}',
+                    text: '{{ __('You will not be able to revert this!') }}',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#EA1B1B',
+                    cancelButtonColor: '#C7C7C7',
+                    confirmButtonText: '{{ __('Yes, delete it!') }}',
+                    cancelButtonText: '{{ __('Cancel') }}'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        $.ajax({
+                            type: "DELETE",
+                            url: deleteUrl,
+
+                            success: function(data) {
+                                if (data.status == 'success') {
+                                    Swal.fire(
+                                        'Deleted!',
+                                        data.message,
+                                        'success'
+                                    )
+                                    window.location.reload();
+                                } else if (data.status == 'error') {
+                                    Swal.fire(
+                                        'Error',
+                                        data.message
+                                    )
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        })
+
+                    }
+                })
+                // Alerta
+            })
+        });
     </script>
 
     @stack('scripts')

@@ -44,4 +44,13 @@ trait ImageUploadTrait
             return $path . '/' . $imageName;
         }
     }
+
+    //Función para eliminar la imagen
+    public function deleteImage(string $path)
+    {
+        # Eliminacion de la imagen actual para reemplazarla.
+        if (File::exists(public_path($path))) {
+            File::delete(public_path($path));
+        }
+    }
 }
