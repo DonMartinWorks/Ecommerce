@@ -103,7 +103,8 @@ class SliderController extends Controller
 
         # Image
         $imagePath = $this->updateImage($request, 'banner', 'uploads/banners', $slider->banner);
-        $slider->banner = $imagePath;
+        // Si $imagePath no se actualiza, mantiene la imagen anterior.
+        $slider->banner = empty(!$imagePath) ? $imagePath : $slider->banner;
 
 
         $slider->type = $request->type;
