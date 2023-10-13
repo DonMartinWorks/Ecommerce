@@ -21,6 +21,7 @@ class SliderDataTable extends DataTable
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
+
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 $editBtn = "<a href='" . route('admin.slider.edit', $query->id) . "' class='btn btn-warning' title='Edit $query->title'><i
@@ -33,7 +34,17 @@ class SliderDataTable extends DataTable
             ->addColumn(__('banner'), function ($query) {
                 return $img = "<img width='100px' src='" . asset($query->banner) . "' alt='$query->title'></img>";
             })
-            ->rawColumns([__('banner'), __('action')])
+            ->addColumn(__('status'), function ($query) {
+                $active = '<i class="badge badge-info"><i class="far fa-check-circle"></i></i></i>';
+                $inactive = '<i class="badge badge-danger"><i class="far fa-times-circle"></i></i>';
+
+                if ($query->status) {
+                    return $active;
+                } else {
+                    return $inactive;
+                }
+            })
+            ->rawColumns([__('banner'), __('action'), __('status')])
             ->setRowId('id');
     }
 
@@ -76,6 +87,8 @@ class SliderDataTable extends DataTable
             Column::make('id')->width(100),
             Column::make(__('banner'))->width(200),
             Column::make(__('title')),
+            Column::make(__('serial')),
+            Column::make(__('status')),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
