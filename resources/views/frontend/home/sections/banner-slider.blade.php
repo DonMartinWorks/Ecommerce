@@ -16,7 +16,7 @@
                                 </div>
                             </div>
                         @empty
-                            <p>{{ __('There is no sliders') }}</p>
+                            <p class="text-center">{{ __('There is no sliders') }}</p>
                         @endforelse
                     </div>
                 </div>
