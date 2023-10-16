@@ -20,12 +20,12 @@
                             <h4>{{ __('Categories') }}</h4>
                         </div>
                         <div class="card-body">
-                            <form action="" method="post">
+                            <form action="{{ route('admin.category.store') }}" method="post">@csrf
                                 <div class="form-group">
                                     <label for="icon">{{ __('Icon') }}</label>
                                     <div>
                                         <button class="btn btn-primary" data-selected-class="btn-danger"
-                                            data-unselected-class="btn-info" role="iconpicker"></button>
+                                            data-unselected-class="btn-info" role="iconpicker" name="icon"></button>
                                     </div>
                                 </div>
 
