@@ -22,7 +22,26 @@ class CategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'category.action')
+            ->addColumn('action', function ($query) {
+                $editBtn = "<a href='" . route('admin.category.edit', $query->id) . "' class='btn btn-warning' title='Edit $query->title'><i
+                class='fas fa-pencil-alt'></i></a>";
+                $deleteBtn = "<a href='" . route('admin.category.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item' title='Delete $query->title'><i
+                class='far fa-trash-alt'></i></a>";
+
+                return $editBtn . $deleteBtn;
+            })
+            ->addColumn('icon', function ($query) {
+                return '<i style="font-size:40px" class="' . $query->icon . '"></i>';
+            })
+            ->addColumn('status', function ($query) {
+                $button = '<label class="custom-switch mt-2">
+                <input type="checkbox" name="custom-switch-checkbox" class="custom-switch-input">
+                <span class="custom-switch-indicator"></span>
+                </label>';
+
+                return $button;
+            })
+            ->rawColumns([__('icon'), __('action'), __('status')])
             ->setRowId('id');
     }
 
@@ -40,20 +59,20 @@ class CategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('category-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('category-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +81,15 @@ class CategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
+            Column::make('id')->width(100),
+            Column::make(__('icon'))->width(300),
+            Column::make(__('name')),
+            Column::make(__('status'))->width(200),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
