@@ -64,7 +64,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('roles.admin.category.edit', compact('category'));
     }
 
     /**
@@ -72,7 +74,25 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'icon' => ['required', 'not_in:empty'],
+            'name' => ['required', 'max:150', 'unique:categories,name,' . $id],
+            'status' => ['required'],
+        ]);
+
+        $category = Category::findOrFail($id);
+
+        $category->icon = $request->icon;
+        $category->name = $request->name;
+        # Generación del SLUG
+        $category->slug = Str::slug($request->name);
+        $category->status = $request->status;
+        $category->save();
+
+        $msg = __('Category updated successfully!');
+        toastr()->success($msg);
+
+        return redirect()->route('admin.category.index');
     }
 
     /**
