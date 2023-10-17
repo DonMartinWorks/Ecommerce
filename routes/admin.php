@@ -49,4 +49,5 @@ Route::resource('/slider', SliderController::class);
 | Acá van las rutas de category.
 |
 */
+Route::put('/change-status', [CategoryController::class, 'change_status'])->name('category.change-status');
 Route::resource('/category', CategoryController::class);
