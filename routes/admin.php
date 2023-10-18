@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
-use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\ProfileController;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +52,14 @@ Route::resource('/slider', SliderController::class);
 */
 Route::put('/change-status', [CategoryController::class, 'change_status'])->name('category.change-status');
 Route::resource('/category', CategoryController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Sub Category
+|--------------------------------------------------------------------------
+|
+| Acá van las rutas de sub-category.
+|
+*/
+Route::put('/sub-category/change-status', [SubCategoryController::class, 'change_status'])->name('sub-category.change-status');
+Route::resource('/sub-category', SubCategoryController::class);

@@ -19,6 +19,8 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link" href="{{ route('admin.category.index') }}"><i class="fas fa-tag"></i>
                             {{ __('Category') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.sub-category.index') }}"><i class="fas fa-tags"></i>
+                            {{ __('Sub Category') }}</a></li>
                 </ul>
             </li>
 
