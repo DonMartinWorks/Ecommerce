@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="serial">{{ __('State') }}</label>
+                                    <label for="status">{{ __('Status') }}</label>
                                     <select name="status" class="form-control">
                                         <option value="1">{{ __('Active') }}</option>
                                         <option value="0">{{ __('Inactive') }}</option>
