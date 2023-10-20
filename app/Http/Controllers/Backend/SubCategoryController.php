@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\Backend\SubCategory;
+use App\Models\SubCategory;
 use App\Http\Controllers\Controller;
 use App\DataTables\SubCategoryDataTable;
 

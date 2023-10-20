@@ -2,15 +2,16 @@
 
 namespace App\DataTables;
 
+
 use App\Models\SubCategory;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class SubCategoryDataTable extends DataTable
 {
@@ -22,7 +23,34 @@ class SubCategoryDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'subcategory.action')
+            ->addColumn('action', function ($query) {
+                $editBtn = "<a href='" . route('admin.sub-category.edit', $query->id) . "' class='btn btn-warning' title='Edit $query->title'><i
+                class='fas fa-pencil-alt'></i></a>";
+                $deleteBtn = "<a href='" . route('admin.sub-category.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item' title='Delete $query->title'><i
+                class='far fa-trash-alt'></i></a>";
+
+                return $editBtn . $deleteBtn;
+            })
+            ->addColumn('category', function ($query) {
+                return $query->category->name;
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    # Checkbox activo
+                    $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                } else {
+                    $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+
+                return $button;
+            })
+            ->rawColumns(['status', 'action'])
             ->setRowId('id');
     }
 
@@ -40,20 +68,20 @@ class SubCategoryDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('subcategory-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('subcategory-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +90,16 @@ class SubCategoryDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make(__('name')),
+            Column::make(__('slug')),
+            Column::make(__('category')),
+            Column::make(__('status'))->width(200),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
