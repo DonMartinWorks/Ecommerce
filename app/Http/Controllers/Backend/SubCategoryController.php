@@ -108,4 +108,17 @@ class SubCategoryController extends Controller
 
         return response(['status' => 'success', 'message' => __('Sub Category deleted successfully')]);
     }
+
+    /**
+     * Funcion para cambiar el status desde la tabla.
+     */
+    public function change_status(request $request)
+    {
+        $subCategory = SubCategory::findOrFail($request->id);
+
+        $subCategory->status = $request->status == 'true' ? 1 : 0;
+        $subCategory->save();
+
+        return response(['status' => 'success', 'message' => __('Status updated successfully')]);
+    }
 }
