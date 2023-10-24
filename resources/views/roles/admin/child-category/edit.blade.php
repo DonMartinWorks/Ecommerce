@@ -24,7 +24,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="serial">{{ __('Category') }}</label>
+                                    <label for="serial">{{ __('State') }}</label>
                                     <select name="category" class="form-control">
                                         <option value="" selected disabled>{{ __('Select') }}</option>
                                         @foreach ($categories as $category)

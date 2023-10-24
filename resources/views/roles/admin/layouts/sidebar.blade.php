@@ -21,6 +21,8 @@
                             {{ __('Category') }}</a></li>
                     <li><a class="nav-link" href="{{ route('admin.sub-category.index') }}"><i class="fas fa-tags"></i>
                             {{ __('Sub Category') }}</a></li>
+                    <li><a class="nav-link" href="{{ route('admin.child-category.index') }}"><i class="fas fa-project-diagram"></i>
+                            {{ __('Child Category') }}</a></li>
                 </ul>
             </li>
 

@@ -23,11 +23,18 @@
                             <form action="{{ route('admin.sub-category.store') }}" method="post">@csrf
                                 <div class="form-group">
                                     <label for="serial">{{ __('Category') }}</label>
-                                    <select name="category" class="form-control">
+                                    <select name="category" class="form-control main-category">
                                         <option value="" selected disabled>{{ __('Select') }}</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="serial">{{ __('Sub Category') }}</label>
+                                    <select name="category" class="form-control sub-category">
+                                        <!-- -->
                                     </select>
                                 </div>
 
@@ -53,3 +60,33 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('body').on('change', '.main-category', function(e) {
+                let id = $(this).val();
+                $.ajax({
+                    method: 'GET',
+                    url: "{{ route('admin.get-subcategories') }}",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        // console.log(data);
+
+                        $('.sub-category').html(`<option value="" selected disabled>{{ __('Select') }}</option>`)
+                        $.each(data, function(i, item) {
+                            // console.log(item.name);
+                            // Trae las categorias para imprimirlas con el select con la clase SUB-CATEGORY
+                            $('.sub-category').append(`<option value="${item.id}">${item.name}</option>`)
+                        })
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                })
+            })
+        })
+    </script>
+@endpush
