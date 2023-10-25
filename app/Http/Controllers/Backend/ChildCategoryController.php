@@ -124,4 +124,17 @@ class ChildCategoryController extends Controller
 
         return response(['status' => 'success', 'message' => __('Child Category deleted successfully')]);
     }
+
+    /**
+     * Funcion para cambiar el status desde la tabla.
+     */
+    public function change_status(request $request)
+    {
+        $category = ChildCategory::findOrFail($request->id);
+
+        $category->status = $request->status == 'true' ? 1 : 0;
+        $category->save();
+
+        return response(['status' => 'success', 'message' => __('Status updated successfully')]);
+    }
 }
