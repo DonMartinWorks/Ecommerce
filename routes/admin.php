@@ -73,6 +73,6 @@ Route::resource('/sub-category', SubCategoryController::class);
 | Acá van las rutas de child-category.
 |
 */
-Route::put('/child-category/change-status', [ChildCategoryController::class, 'change_status'])->name('sub-category.change-status');
+Route::put('/child-category/change-status', [ChildCategoryController::class, 'change_status'])->name('child-category.change-status');
 Route::get('/get-subcategory', [ChildCategoryController::class, 'get_subcategory'])->name('get-subcategories');
 Route::resource('/child-category', ChildCategoryController::class);
