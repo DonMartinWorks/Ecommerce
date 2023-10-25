@@ -4,11 +4,11 @@
     <!-- Main Content -->
     <section class="section">
         <div class="section-header">
-            <h1>{{ __('Sub Category') }}</h1>
+            <h1>{{ __('Child Category') }}</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="#">Components</a></div>
-                <div class="breadcrumb-item">{{ __('Sub Category') }}</div>
+                <div class="breadcrumb-item">{{ __('Child Category') }}</div>
             </div>
         </div>
 
@@ -17,12 +17,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>{{ __('Sub Category') }}</h4>
+                            <h4>{{ __('Child Category') }}</h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('admin.sub-category.store') }}" method="post">@csrf
+                            <form action="{{ route('admin.child-category.store') }}" method="post">@csrf
                                 <div class="form-group">
-                                    <label for="serial">{{ __('Category') }}</label>
+                                    <label for="category">{{ __('Category') }}</label>
                                     <select name="category" class="form-control main-category">
                                         <option value="" selected disabled>{{ __('Select') }}</option>
                                         @foreach ($categories as $category)
@@ -32,9 +32,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="serial">{{ __('Sub Category') }}</label>
-                                    <select name="category" class="form-control sub-category">
+                                    <label for="sub_category">{{ __('Child Category') }}</label>
+                                    <select name="sub_category" class="form-control sub-category">
                                         <!-- -->
+                                        <option value="" selected disabled>{{ __('Select') }}</option>
                                     </select>
                                 </div>
 
@@ -75,11 +76,12 @@
                     success: function(data) {
                         // console.log(data);
 
-                        $('.sub-category').html(`<option value="" selected disabled>{{ __('Select') }}</option>`)
+                        // $('.sub-category').html(`<option value="" selected disabled>{{ __('Select') }}</option>`)
                         $.each(data, function(i, item) {
                             // console.log(item.name);
                             // Trae las categorias para imprimirlas con el select con la clase SUB-CATEGORY
-                            $('.sub-category').append(`<option value="${item.id}">${item.name}</option>`)
+                            $('.sub-category').append(
+                                `<option value="${item.id}">${item.name}</option>`)
                         })
                     },
                     error: function(xhr, status, error) {
