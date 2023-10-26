@@ -155,7 +155,8 @@
                                 } else if (data.status == 'error') {
                                     Swal.fire(
                                         'Error',
-                                        data.message
+                                        data.message,
+                                        'error'
                                     )
                                 }
                             },
