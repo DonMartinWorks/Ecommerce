@@ -1,5 +1,14 @@
 @php
-    $categories = App\Models\Category::all();
+    $categories = App\Models\Category::where('status', 1)
+    // Para traer las subcategorias con el status activo
+    ->with(['subCategories' => function($query) {
+        $query->where('status', 1)
+        // Para traer las categorias hijas con el status activo
+        ->with(['childCategories' => function($query) {
+            $query->where('status', 1);
+        }]);
+    }])
+    ->get();
 @endphp
 
 <!--============================
