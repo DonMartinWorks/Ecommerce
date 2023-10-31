@@ -179,8 +179,15 @@ _Comandos que podrian ser necesarios_
     ```
 
 4. Creacion de un modelo con controller tipo resource, con migration, factory y seeder para la DB.
+
     ```
     php artisan make:model Model -mcfs --resource
+    ```
+
+5. Actualización de la información del cargador automático de clases.
+
+    ```
+    composer dump-autoload
     ```
 
 <br />
