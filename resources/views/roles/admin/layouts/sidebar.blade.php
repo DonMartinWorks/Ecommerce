@@ -30,6 +30,16 @@
                 </ul>
             </li>
 
+            <li class="dropdown {{ setActive(['admin.brand.*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-archive"></i>
+                    <span>{{ __('Manage Products') }}</span></a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown {{ setActive(['admin.brand.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.brand.index') }}"><i class="fas fa-signature"></i>
+                            {{ __('Brand') }}</a></li>
+                </ul>
+            </li>
+
             <li class="dropdown {{ setActive(['admin.slider.*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
                     <span>{{ __('Manage Website') }}</span></a>
@@ -39,6 +49,7 @@
                             {{ __('Slider') }}</a></li>
                 </ul>
             </li>
+
 
             {{-- <li><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank
                         Page</span></a></li> --}}
