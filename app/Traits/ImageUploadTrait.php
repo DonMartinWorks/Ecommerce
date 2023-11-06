@@ -3,7 +3,8 @@
 namespace App\Traits;
 
 use Illuminate\Http\Request;
-use File;
+use Illuminate\Support\Facades\File;
+// use File;
 
 trait ImageUploadTrait
 {
@@ -12,13 +13,13 @@ trait ImageUploadTrait
      * Si habia una imagen que se actualizó, esta se elimina y reemplaza.
      */
 
-    public function uploadImage(Request $request, $inputName, $path)
+    public function uploadImage(Request $request, $inputName, $path, $name = 'image')
     {
         if ($request->hasFile($inputName)) {
 
             $image = $request->$inputName;
             $ext = $image->getClientOriginalExtension();
-            $imageName = 'image_' . uniqid() . '.' . $ext;
+            $imageName = $name . '_' . uniqid() . '.' . $ext;
 
             $image->move(public_path($path), $imageName);
 
