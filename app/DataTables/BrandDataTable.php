@@ -22,7 +22,44 @@ class BrandDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'brand.action')
+        ->addColumn('action', function ($query) {
+            $editBtn = "<a href='" . route('admin.brand.edit', $query->id) . "' class='btn btn-warning' title='Edit $query->title'><i
+            class='fas fa-pencil-alt'></i></a>";
+            $deleteBtn = "<a href='" . route('admin.brand.destroy', $query->id) . "' class='btn btn-danger ml-2 delete-item' title='Delete $query->title'><i
+            class='far fa-trash-alt'></i></a>";
+
+            return $editBtn . $deleteBtn;
+        })
+            ->addColumn(__('logo'), function ($query) {
+                return "<img width='100px' src='" . asset($query->logo) . "' alt='$query->name'></img>";
+            })
+            ->addColumn(__('is_featured'), function ($query) {
+                $active = '<i class="badge badge-info"><i class="far fa-check-circle"></i></i></i>';
+                $inactive = '<i class="badge badge-danger"><i class="far fa-times-circle"></i></i>';
+
+                if ($query->is_featured) {
+                    return $active;
+                } else {
+                    return $inactive;
+                }
+            })
+            ->addColumn('status', function ($query) {
+                if ($query->status == 1) {
+                    # Checkbox activo
+                    $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" checked name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                } else {
+                    $button = '<label class="custom-switch mt-2">
+                    <input type="checkbox" name="custom-switch-checkbox" data-id="' . $query->id . '" class="custom-switch-input change-status">
+                    <span class="custom-switch-indicator"></span>
+                    </label>';
+                }
+
+                return $button;
+            })
+            ->rawColumns([__('logo'), __('is_featured'), __('status'), __('action')])
             ->setRowId('id');
     }
 
@@ -40,20 +77,20 @@ class BrandDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('brand-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('brand-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+            //->dom('Bfrtip')
+            ->orderBy(0)
+            ->selectStyleSingle()
+            ->buttons([
+                Button::make('excel'),
+                Button::make('csv'),
+                Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -62,15 +99,16 @@ class BrandDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make(__('logo'))->width(200),
+            Column::make(__('name'))->width(300),
+            Column::make(__('is_featured')),
+            Column::make(__('status')),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(200)
+                ->addClass('text-center'),
         ];
     }
 
