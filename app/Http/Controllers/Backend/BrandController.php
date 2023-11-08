@@ -35,7 +35,7 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'logo' => ['nullable', 'image', 'max:1024'],
+            'logo' => ['required', 'image', 'max:1024'],
             'name' => ['required', 'max:200'],
             'status' => ['required', 'integer', 'between:0,1'],
             'is_featured' => ['required', 'integer', 'between:0,1'],
@@ -70,7 +70,8 @@ class BrandController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        return view('roles.admin.brand.edit', compact('brand'));
     }
 
     /**
@@ -78,7 +79,27 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'logo' => ['image', 'max:1024'],
+            'name' => ['required', 'max:200'],
+            'status' => ['required', 'integer', 'between:0,1'],
+            'is_featured' => ['required', 'integer', 'between:0,1'],
+        ]);
+
+        $brand = Brand::findOrFail($id);
+        $logoPath = $this->updateImage($request, 'logo', 'uploads/brands', $brand->logo, 'brand');
+
+        $brand->logo = empty(!$logoPath) ? $logoPath : $brand->logo;
+        $brand->name = $request->name;
+        $brand->slug = Str::slug($request->name);
+        $brand->is_featured = $request->is_featured;
+        $brand->status = $request->status;
+        $brand->save();
+
+        $msg = __('Brand updated successfully!');
+        toastr()->success($msg);
+
+        return redirect()->route('admin.brand.index');
     }
 
     /**
