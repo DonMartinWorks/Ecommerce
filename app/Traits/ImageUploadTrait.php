@@ -28,7 +28,7 @@ trait ImageUploadTrait
     }
 
     //Funcion para actualizar las imagenes.
-    public function updateImage(Request $request, $inputName, $path, $oldPath = null)
+    public function updateImage(Request $request, $inputName, $path, $oldPath = null, $name = 'image')
     {
         if ($request->hasFile($inputName)) {
             # Eliminacion de la imagen actual para reemplazarla.
@@ -38,7 +38,7 @@ trait ImageUploadTrait
 
             $image = $request->$inputName;
             $ext = $image->getClientOriginalExtension();
-            $imageName = 'image_' . uniqid() . '.' . $ext;
+            $imageName = $name . '_' . uniqid() . '.' . $ext;
 
             $image->move(public_path($path), $imageName);
 

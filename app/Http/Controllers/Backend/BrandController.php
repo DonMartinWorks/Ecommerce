@@ -36,7 +36,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'logo' => ['required', 'image', 'max:1024'],
-            'name' => ['required', 'max:200'],
+            'name' => ['required', 'max:200', 'unique:brands,name'],
             'status' => ['required', 'integer', 'between:0,1'],
             'is_featured' => ['required', 'integer', 'between:0,1'],
         ]);
@@ -81,7 +81,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'logo' => ['image', 'max:1024'],
-            'name' => ['required', 'max:200'],
+            'name' => ['required', 'max:200', 'unique:brands,name,' . $id],
             'status' => ['required', 'integer', 'between:0,1'],
             'is_featured' => ['required', 'integer', 'between:0,1'],
         ]);
