@@ -113,4 +113,17 @@ class BrandController extends Controller
 
         return response(['status' => 'success', 'message' => __('Brand updated successfully')]);
     }
+
+    /**
+     * Funcion para cambiar el status desde la tabla.
+     */
+    public function change_status(request $request)
+    {
+        $brand = Brand::findOrFail($request->id);
+
+        $brand->status = $request->status == 'true' ? 1 : 0;
+        $brand->save();
+
+        return response(['status' => 'success', 'message' => __('Brand updated successfully')]);
+    }
 }
