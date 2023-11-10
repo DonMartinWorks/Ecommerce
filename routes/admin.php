@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminVendorProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
@@ -78,7 +79,6 @@ Route::put('/child-category/change-status', [ChildCategoryController::class, 'ch
 Route::get('/get-subcategory', [ChildCategoryController::class, 'get_subcategory'])->name('get-subcategories');
 Route::resource('/child-category', ChildCategoryController::class);
 
-
 /*
 |--------------------------------------------------------------------------
 | Brand
@@ -89,3 +89,13 @@ Route::resource('/child-category', ChildCategoryController::class);
 */
 Route::put('/brand/change-status', [BrandController::class, 'change_status'])->name('brand.change-status');
 Route::resource('/brand', BrandController::class);
+
+/*
+|--------------------------------------------------------------------------
+| Vendor Profile
+|--------------------------------------------------------------------------
+|
+| Acá van las rutas de venodr.
+|
+*/
+Route::resource('/vendor-profile', AdminVendorProfileController::class);
