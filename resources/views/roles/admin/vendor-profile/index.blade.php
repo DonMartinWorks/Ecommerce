@@ -16,8 +16,15 @@
                         </div>
 
                         <div class="card-body">
-                            <form action="{{ route('admin.vendor-profile.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.vendor-profile.store') }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
+                                <div class="form-group">
+                                    <label for="banner">{{ __('Preview') }}</label>
+                                    <br>
+                                    <img src="{{ asset($profile->banner) }}" alt="{{ $profile->banner }}">
+                                </div>
+
                                 <div class="form-group">
                                     <label for="banner">{{ __('Banner') }}</label>
                                     <input type="file" name="banner" class="form-control">
@@ -25,38 +32,42 @@
 
                                 <div class="form-group">
                                     <label for="phone">{{ __('Phone') }}</label>
-                                    <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                                    <input type="text" name="phone" class="form-control" value="{{ $profile->phone }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">{{ __('Email') }}</label>
-                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ $profile->email }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="Address">{{ __('Address') }}</label>
-                                    <input type="text" name="Address" class="form-control" value="{{ old('Address') }}">
+                                    <input type="text" name="address" class="form-control"
+                                        value="{{ $profile->address }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="description">{{ __('Description') }}</label>
-                                    <textarea class="summernote" name="description"></textarea>
+                                    <textarea class="summernote" name="description">{{ $profile->description }}</textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fb_link">{{ __('Facebook Link') }}</label>
-                                    <input type="text" name="fb_link" class="form-control" value="{{ old('fb_link') }}">
+                                    <input type="text" name="fb_link" class="form-control"
+                                        value="{{ $profile->fb_link }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tw_link">{{ __('Twitter Link') }}</label>
-                                    <input type="text" name="tw_link" class="form-control" value="{{ old('tw_link') }}">
+                                    <input type="text" name="tw_link" class="form-control"
+                                        value="{{ $profile->tw_link }}">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="insta_link">{{ __('Instagram Link') }}</label>
                                     <input type="text" name="insta_link" class="form-control"
-                                        value="{{ old('insta_link') }}">
+                                        value="{{ $profile->insta_link }}">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>

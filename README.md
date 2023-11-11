@@ -28,6 +28,8 @@ _Este proyecto es un ecommerce._
 
 4. Dentro de uploads crea una carpeta llamada brands.\_
 
+5. Dentro de uploads crea una carpeta llamada vendor.\_
+
 <br />
 <br />
 
